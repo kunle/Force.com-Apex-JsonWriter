@@ -1,0 +1,43 @@
+README
+======
+
+This library allows you to easily write JSON in APEX scripting language of Force.com
+For more on Apex goto http://developer.force.com
+
+Example usage:
+
+        String expectedResult = '{'+
+                                    '"To":"test@test.com",'+
+                                    '"From":"James Bond <ka@architech.ca>",'+
+                                    '"ReplyTo":"James Bond<ooadeniy@hotmail.com>",'+
+                                    '"Subject":"This is an invitation test",'+
+                                    '"HtmlBody":"<b>Hello, Kunle</b> <br/> We are sending you this test invite",'+
+                                    '"Integer":1000,'+
+                                    '"Decimal":15.344,'+
+                                    '"Boolean":true,'+
+                                    '"Double":2.2'+
+                                '}';
+                                        
+                                        
+        List<JSONNameValuePair> jsonBodyMemebers = new List<JSONNameValuePair>();
+        Double x = 2.2;
+        jsonBodyMemebers.add(new JSONNameValuePair('To','test@test.com'));
+        jsonBodyMemebers.add(new JSONNameValuePair('From','James Bond <kunle4@gmail.ca>'));
+        jsonBodyMemebers.add(new JSONNameValuePair('ReplyTo','James Bond<someemail@hotmail.com>'));
+        jsonBodyMemebers.add(new JSONNameValuePair('Subject','This is an invitation test'));
+        jsonBodyMemebers.add(new JSONNameValuePair('HtmlBody','<b>Hello, Kunle</b> <br/> We are sending you this test invite'));
+        jsonBodyMemebers.add(new JSONNameValuePair('Integer',1000));
+        jsonBodyMemebers.add(new JSONNameValuePair('Decimal',15.344));
+        jsonBodyMemebers.add(new JSONNameValuePair('Boolean',true));
+        jsonBodyMemebers.add(new JSONNameValuePair('Double',x));
+        JSONNameValuePair.returnJsonMembersString(jsonBodyMemebers);
+                
+        String body = JSONNameValuePair.returnJsonMembersString(jsonBodyMemebers); 
+        system.assert(body == expectedResult);
+Dependencies:
+
+Class is selfcontained. It has 93% test coverage
+
+Note:
+
+There are no validations. I plan to put these in when I get the time
